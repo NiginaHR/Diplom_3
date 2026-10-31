@@ -50,4 +50,21 @@ public class RegisterPage {
     public void clickLoginLinkOnRegisterPage() {
         wait.until(ExpectedConditions.elementToBeClickable(loginLink)).click();
     }
+
+    public boolean isLoginButtonDisplayed() {
+        try {
+            return driver.findElement(By.xpath("//button[contains(text(), 'Войти')]")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isRegisterButtonDisplayed() {
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//button[text()='Зарегистрироваться']"))).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

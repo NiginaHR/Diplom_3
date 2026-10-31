@@ -33,6 +33,15 @@ public class LoginPage {
 
     @Step("Нажатие кнопки 'Войти'")
     public void clickLoginButton() {
+
         wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
+    }
+
+    public boolean isLoginButtonDisplayed() {
+        try {
+            return driver.findElement(By.xpath("//button[contains(text(), 'Войти')]")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

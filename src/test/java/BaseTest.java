@@ -4,15 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.ApiCreate;
 
 import java.time.Duration;
 
 public class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected String uniqueEmail;
-    protected String password;
+
+    public static final String BASE_URL = "https://qa-stellarburgers.education-services.ru";
 
     @BeforeEach
     public void setUp() {
@@ -30,15 +29,13 @@ public class BaseTest {
         this.driver = new ChromeDriver(options);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        this.uniqueEmail = "stiven" + System.currentTimeMillis() + "@mail.ru";
-        this.password = "123456!";
 
-        ApiCreate.createUser("Stiven", uniqueEmail, password);
     }
 
     @AfterEach
     public void tearDown() {
-        ApiCreate.deleteUser(uniqueEmail, password);
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
